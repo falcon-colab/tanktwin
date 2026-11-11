@@ -12,6 +12,7 @@ import {
   type Stock,
   type Tank,
 } from '../lib/planner';
+import TankPreview from './TankPreview';
 import './planner.css';
 
 type Units = 'us' | 'metric';
@@ -237,6 +238,13 @@ export default function Planner() {
           </div>
         )}
       </section>
+
+      {stock.length > 0 && (
+        <section className="card step">
+          <h2>Tank preview</h2>
+          <TankPreview tank={tank} stock={stock} />
+        </section>
+      )}
 
       <section className="card verdict" aria-live="polite">
         <h2>3. Verdict</h2>

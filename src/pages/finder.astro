@@ -1,0 +1,13 @@
+---
+import Base from '../layouts/Base.astro';
+import Finder from '../components/Finder.tsx';
+---
+
+<Base
+  title="Which Fish Should I Get? Aquarium Fish Finder by Tank Size | TankTwin"
+  description="Find fish that suit your tank size, tap water and experience, or start from a ready-made community setup you can open in the planner."
+>
+  <h1>Which fish suit your tank?</h1>
+  <p class="lede">Tell us about your tank and tap water. We'll show the fish that fit, plus ready-made setups you can open in the planner.</p>
+  <Finder client:load />
+</Base>

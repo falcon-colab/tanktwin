@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import { CALC_PAGES } from '../../lib/calcPages';
+---
+
+<Base
+  title="Aquarium Calculators: Volume, Water Change, Dosing and Substrate | TankTwin"
+  description="Free aquarium calculators for tank volume, water changes, water conditioner and medication dosing, and how much sand or gravel to buy."
+>
+  <h1>Aquarium calculators</h1>
+  <p class="lede">Quick answers for everyday fishkeeping. Each one works in gallons or liters.</p>
+  <ul class="grid-fish">
+    {
+      CALC_PAGES.map((c) => (
+        <li>
+          <a href={`/calculators/${c.slug}/`}>
+            <div class="card">
+              <strong>{c.name}</strong>
+              <br />
+              <small>{c.intro}</small>
+            </div>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</Base>
