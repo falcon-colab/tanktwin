@@ -1,0 +1,10 @@
+[
+  {"slug":"nano-jewel","name":"Nano jewel box","tank":"10","blurb":"Tiny, colorful fish for a planted 10 gallon.","fish":[["ember-tetra",8],["pygmy-corydoras",8],["honey-gourami",1]]},
+  {"slug":"betta-showcase","name":"Betta showcase","tank":"10","blurb":"One betta as the star, with calm bottom dwellers that leave its fins alone.","fish":[["betta",1],["pygmy-corydoras",8]]},
+  {"slug":"classic-community","name":"Classic community","tank":"20L","blurb":"The beginner favorite: a neon school, busy corys and a gentle gourami.","fish":[["neon-tetra",10],["panda-corydoras",6],["honey-gourami",1]]},
+  {"slug":"cool-water","name":"No-heater tank","tank":"20L","blurb":"Active fish that are happy at room temperature, so no heater is needed.","fish":[["white-cloud-minnow",10],["zebra-danio",6]]},
+  {"slug":"livebearer-colors","name":"Livebearer colors","tank":"29","blurb":"Bright, easy fish for hard tap water. Expect babies.","fish":[["platy",5],["endlers-livebearer",6],["bronze-corydoras",6]]},
+  {"slug":"asian-stream","name":"Asian stream","tank":"29","blurb":"Rasboras in midwater, a dwarf gourami up top and loaches weaving through the sand below.","fish":[["harlequin-rasbora",10],["kuhli-loach",6],["dwarf-gourami",1]]},
+  {"slug":"soft-water-amazon","name":"Soft-water Amazon","tank":"40B","blurb":"Cardinals and rams in warm, soft water, like a South American creek.","fish":[["cardinal-tetra",12],["german-blue-ram",2],["sterbai-corydoras",6]]},
+  {"slug":"angelfish-centerpiece","name":"Angelfish centerpiece","tank":"55","blurb":"A pair of angelfish over a school of rummynose tetras.","fish":[["angelfish",2],["rummynose-tetra",10],["sterbai-corydoras",6],["bristlenose-pleco",1]]}
+]

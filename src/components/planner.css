@@ -5,7 +5,7 @@
 }
 @media (min-width: 900px) {
   .planner { grid-template-columns: 1fr 1fr; }
-  .planner .verdict { grid-column: 2; grid-row: 1 / span 2; align-self: start; position: sticky; top: 16px; }
+  .planner .verdict { grid-column: 2; grid-row: 1 / span 3; align-self: start; position: sticky; top: 16px; }
 }
 .planner h2 { margin: 0 0 12px; font-size: 1.1rem; }
 .planner .step-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
@@ -60,3 +60,27 @@
 .planner .issues .sev-ok { border-left-color: var(--good); }
 .planner .share { margin-top: 16px; width: 100%; }
 .planner .share:disabled { opacity: 0.5; cursor: default; }
+
+.tank-preview { margin: 0; }
+.tank-preview svg { width: 100%; height: auto; display: block; }
+.tank-preview figcaption { font-size: 0.8rem; color: var(--muted); margin-top: 6px; }
+
+.finder .filters { display: grid; gap: 4px 16px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); align-items: end; }
+.finder .field { display: grid; gap: 4px; margin-bottom: 10px; }
+.finder .field span { font-size: 0.85rem; color: var(--muted); }
+.finder .check { display: flex; align-items: center; gap: 8px; min-height: 40px; margin-bottom: 10px; }
+.finder .check input { min-height: auto; width: 18px; height: 18px; }
+.finder .small { font-size: 0.9rem; margin: 6px 0 0; color: var(--text); }
+.finder .muted { color: var(--muted); }
+
+.calc .field { display: grid; gap: 4px; margin-bottom: 10px; }
+.calc .field span { font-size: 0.85rem; color: var(--muted); }
+.calc .field input, .calc .field select { width: 100%; }
+.calc h3 { font-size: 1rem; margin: 16px 0 8px; }
+.calc-grid { display: grid; gap: 0 12px; align-items: end; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+.calc-units { display: flex; gap: 8px; margin-bottom: 14px; }
+.calc-result { display: grid; gap: 4px; padding: 14px 16px; border-radius: 10px; background: var(--accent-soft); margin: 8px 0 12px; }
+.calc-result strong { font-size: 1.3rem; }
+.calc-result span { color: var(--muted); font-size: 0.92rem; }
+.calc .small { font-size: 0.88rem; margin: 6px 0; }
+.calc .muted { color: var(--muted); }

@@ -51,10 +51,10 @@ header.site {
   border-bottom: 1px solid var(--border);
   background: var(--surface);
 }
-header.site .wrap { display: flex; align-items: center; gap: 24px; height: 60px; }
+header.site .wrap { display: flex; align-items: center; gap: 8px 24px; min-height: 60px; flex-wrap: wrap; padding-top: 10px; padding-bottom: 10px; }
 header.site .logo { font-weight: 700; font-size: 1.2rem; text-decoration: none; color: var(--text); }
 header.site .logo span { color: var(--accent); }
-header.site nav { display: flex; gap: 16px; font-size: 0.95rem; }
+header.site nav { display: flex; gap: 16px; font-size: 0.95rem; overflow-x: auto; max-width: 100%; white-space: nowrap; }
 header.site nav a { text-decoration: none; color: var(--muted); }
 header.site nav a:hover { color: var(--text); }
 

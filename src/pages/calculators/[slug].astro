@@ -1,0 +1,31 @@
+---
+import Base from '../../layouts/Base.astro';
+import Calculator from '../../components/Calculator.tsx';
+import { CALC_PAGES, type CalcPage } from '../../lib/calcPages';
+
+export function getStaticPaths() {
+  return CALC_PAGES.map((c) => ({ params: { slug: c.slug }, props: { c } }));
+}
+
+const { c } = Astro.props as { c: CalcPage };
+const others = CALC_PAGES.filter((o) => o.slug !== c.slug);
+---
+
+<Base title={c.title} description={c.description}>
+  <p><a href="/calculators/">All calculators</a></p>
+  <h1>{c.name} calculator</h1>
+  <p class="lede">{c.intro}</p>
+  <Calculator client:load kind={c.kind} />
+  <h2>Planning a new tank?</h2>
+  <p>Use the <a href="/">TankTwin planner</a> to check which fish get along and how many your tank can hold.</p>
+  <h2>More calculators</h2>
+  <ul class="chips">
+    {
+      others.map((o) => (
+        <li>
+          <a href={`/calculators/${o.slug}/`}>{o.name}</a>
+        </li>
+      ))
+    }
+  </ul>
+</Base>
