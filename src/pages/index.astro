@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+import Planner from '../components/Planner.tsx';
+---
+
+<Base
+  title="TankTwin: Aquarium Stocking Planner and Fish Compatibility Checker"
+  description="Plan your aquarium before you buy. Pick a tank, add fish, and instantly check compatibility, stocking level, water parameters, filter and heater size."
+>
+  <h1>Plan your aquarium before you buy</h1>
+  <p class="lede">
+    Pick a tank and add fish. TankTwin checks whether they get along, whether the tank is overstocked, and which water
+    settings and gear they need.
+  </p>
+  <Planner client:load />
+</Base>

@@ -1,0 +1,74 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SPECIES, compatible, pairIssues, type Species } from '../../lib/planner';
+
+export function getStaticPaths() {
+  return SPECIES.map((s) => ({ params: { slug: s.slug }, props: { s } }));
+}
+
+const { s } = Astro.props as { s: Species };
+
+const others = SPECIES.filter((o) => o.slug !== s.slug);
+const good = others.filter((o) => compatible(s, o)).sort((a, b) => a.name.localeCompare(b.name));
+const avoid = others
+  .map((o) => ({ o, issues: pairIssues(s, o).filter((i) => i.severity !== 'info') }))
+  .filter((x) => x.issues.length > 0)
+  .slice(0, 8);
+
+const toC = (f: number) => Math.round(((f - 32) * 5) / 9);
+const plan = `/?tank=${s.minTankGal <= 20 ? '20L' : s.minTankGal <= 29 ? '29' : s.minTankGal <= 40 ? '40B' : s.minTankGal <= 55 ? '55' : s.minTankGal <= 75 ? '75' : '125'}&fish=${s.slug}.${s.minGroup}`;
+const title = `${s.name} Care: Tank Size, Tankmates and Water Parameters | TankTwin`;
+const description = `${s.name} (${s.scientific}) needs at least a ${s.minTankGal} gallon tank${s.minGroup > 1 ? ` and a group of ${s.minGroup}` : ''}. See water parameters, temperament and ${good.length} compatible tankmates.`;
+---
+
+<Base title={title} description={description}>
+  <p><a href="/fish/">All fish</a></p>
+  <h1>{s.name} care guide</h1>
+  <p class="lede"><em>{s.scientific}</em>. {s.notes}</p>
+
+  <div class="card">
+    <table class="facts">
+      <tbody>
+        <tr><th>Adult size</th><td>{s.sizeIn} in ({Math.round(s.sizeIn * 2.54)} cm)</td></tr>
+        <tr><th>Minimum tank</th><td>{s.minTankGal} gallons ({Math.round(s.minTankGal * 3.785)} L)</td></tr>
+        <tr><th>Group size</th><td>{s.maxPerTank === 1 ? 'Keep one per tank' : s.minGroup > 1 ? `At least ${s.minGroup}` : 'Can be kept alone'}</td></tr>
+        <tr><th>Temperature</th><td>{s.tempF[0]}–{s.tempF[1]} °F ({toC(s.tempF[0])}–{toC(s.tempF[1])} °C)</td></tr>
+        <tr><th>pH</th><td>{s.ph[0]}–{s.ph[1]}</td></tr>
+        <tr><th>Hardness</th><td>{s.gh[0]}–{s.gh[1]} dGH</td></tr>
+        <tr><th>Temperament</th><td style="text-transform: capitalize">{s.temperament}</td></tr>
+        <tr><th>Swims at</th><td>{s.level === 'all' ? 'All levels' : `${s.level[0].toUpperCase()}${s.level.slice(1)} of the tank`}</td></tr>
+        <tr><th>Care level</th><td style="text-transform: capitalize">{s.care}</td></tr>
+      </tbody>
+    </table>
+    <p><a href={plan}>Plan a tank with {s.name} →</a></p>
+  </div>
+
+  <h2>Good tankmates for {s.name}</h2>
+  {
+    good.length > 0 ? (
+      <ul class="chips">
+        {good.map((o) => (
+          <li>
+            <a href={`/fish/${o.slug}/`}>{o.name}</a>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p>{s.name} is best kept in a species-only tank.</p>
+    )
+  }
+  <p class="lede" style="font-size: 0.9rem">These fish share a water range with {s.name} and have no known conflicts. Always check tank size and stocking in the planner.</p>
+
+  {
+    avoid.length > 0 && (
+      <>
+        <h2>Fish to avoid with {s.name}</h2>
+        <ul>
+          {avoid.map(({ issues }) => (
+            <li>{issues[0].message}</li>
+          ))}
+        </ul>
+      </>
+    )
+  }
+</Base>
