@@ -1,0 +1,31 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SPECIES } from '../../lib/planner';
+
+const sorted = [...SPECIES].sort((a, b) => a.name.localeCompare(b.name));
+---
+
+<Base
+  title="Freshwater Fish Care Guides: Tank Size, Tankmates and Water | TankTwin"
+  description={`Care facts for ${SPECIES.length} popular freshwater aquarium fish: minimum tank size, group size, water parameters and compatible tankmates.`}
+>
+  <h1>Freshwater fish guides</h1>
+  <p class="lede">Tank size, group size, water settings and tankmates for {SPECIES.length} popular aquarium fish.</p>
+  <ul class="grid-fish">
+    {
+      sorted.map((s) => (
+        <li>
+          <a href={`/fish/${s.slug}/`}>
+            <div class="card">
+              <strong>{s.name}</strong>
+              <br />
+              <small>
+                {s.sizeIn} in · {s.minTankGal}+ gal · {s.care} care
+              </small>
+            </div>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</Base>

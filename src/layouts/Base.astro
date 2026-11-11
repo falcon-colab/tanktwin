@@ -1,0 +1,47 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap">
+        <a class="logo" href="/">Tank<span>Twin</span></a>
+        <nav>
+          <a href="/">Planner</a>
+          <a href="/fish/">Fish</a>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <slot />
+    </main>
+    <footer class="site">
+      <div class="wrap">
+        TankTwin plans are guidelines for healthy tanks. Fish vary, so watch your own fish and ask your local store when unsure.
+      </div>
+    </footer>
+  </body>
+</html>
